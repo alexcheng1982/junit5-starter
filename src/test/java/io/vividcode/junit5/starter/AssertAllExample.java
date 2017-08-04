@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Example of assertAll")
+@DisplayName("Examples of assertAll")
 public class AssertAllExample {
 
 	@Test
 	@DisplayName("Simple assertAll")
-	public void simpleAssertAll() {
+	void simpleAssertAll() {
 		assertAll(
 				() -> assertTrue(true),
 				() -> assertEquals(1, 1)
@@ -27,8 +27,19 @@ public class AssertAllExample {
 	}
 
 	@Test
-	public void failedAssertAll() {
+	@DisplayName("Failed assertAll")
+	void failedAssertAll() {
 		assertAll(
+				() -> assertTrue(false),
+				() -> assertEquals(1, 2)
+		);
+	}
+
+	@Test
+	@DisplayName("Failed assertAll with custom heading message")
+	void failedAssertAllWithHeading() {
+		assertAll(
+				"Boom!",
 				() -> assertTrue(false),
 				() -> assertEquals(1, 2)
 		);
