@@ -12,26 +12,26 @@ import org.opentest4j.MultipleFailuresError;
 @DisplayName("Examples of assertThrows")
 public class AssertThrowsExample {
 
-	@Test
-	@DisplayName("Simple assertThrows")
-	void simpleAssertThrows() {
-		assertThrows(
-				ArithmeticException.class,
-				() -> System.out.println(1 / 0)
-				, "Divided by zero is not allowed.");
-	}
+  @Test
+  @DisplayName("Simple assertThrows")
+  void simpleAssertThrows() {
+    assertThrows(
+        ArithmeticException.class,
+        () -> System.out.println(1 / 0)
+        , "Divided by zero is not allowed.");
+  }
 
-	@Test
-	@DisplayName("Check thrown exception")
-	void checkThrownException() {
-		final MultipleFailuresError error = assertThrows(
-				MultipleFailuresError.class,
-				() -> assertAll(
-						"Boom!",
-						() -> assertTrue(false)
-				)
-		);
-		assertEquals(1, error.getFailures().size());
-		assertTrue(error.getMessage().contains("Boom!"));
-	}
+  @Test
+  @DisplayName("Check thrown exception")
+  void checkThrownException() {
+    final MultipleFailuresError error = assertThrows(
+        MultipleFailuresError.class,
+        () -> assertAll(
+            "Boom!",
+            () -> assertTrue(false)
+        )
+    );
+    assertEquals(1, error.getFailures().size());
+    assertTrue(error.getMessage().contains("Boom!"));
+  }
 }
