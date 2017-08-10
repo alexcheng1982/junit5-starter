@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Tag;
 
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("slow")
-@Tag("integration")
-public @interface Slow {
+@Tag("fail")
+public @interface Fail {
 
 }

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.MultipleFailuresError;
 
 @DisplayName("Examples of assertThrows")
-public class AssertThrowsExample {
+public class AssertThrowsTests {
 
   @Test
   @DisplayName("Simple assertThrows")

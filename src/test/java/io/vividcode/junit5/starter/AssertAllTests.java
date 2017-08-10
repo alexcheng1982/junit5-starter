@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Examples of assertAll")
-public class AssertAllExample {
+public class AssertAllTests {
 
   @Test
   @DisplayName("Simple assertAll")
@@ -28,6 +28,7 @@ public class AssertAllExample {
 
   @Test
   @DisplayName("Failed assertAll")
+  @Fail
   void failedAssertAll() {
     assertAll(
         () -> assertTrue(false),
@@ -37,6 +38,7 @@ public class AssertAllExample {
 
   @Test
   @DisplayName("Failed assertAll with custom heading message")
+  @Fail
   void failedAssertAllWithHeading() {
     assertAll(
         "Boom!",
