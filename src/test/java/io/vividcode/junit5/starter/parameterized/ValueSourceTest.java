@@ -12,7 +12,14 @@ public class ValueSourceTest {
   @ParameterizedTest
   @ValueSource(ints = {1, 2, 4})
   @DisplayName("simple")
-  void simple(final int num) {
+  void simpleValue(final int num) {
+    assertTrue(num > 0);
+  }
+
+  @ParameterizedTest(name = "Run #{index} => {arguments}")
+  @ValueSource(ints = {1, 2, 4})
+  @DisplayName("custom display name")
+  void customDisplayName(final int num) {
     assertTrue(num > 0);
   }
 

@@ -13,7 +13,7 @@ public class EnumSourceTest {
   @ParameterizedTest
   @EnumSource(Color.class)
   @DisplayName("simple")
-  void simple(final Color color) {
+  void simpleEnum(final Color color) {
     assertNotNull(color);
   }
 
@@ -32,14 +32,18 @@ public class EnumSourceTest {
   }
 
   @ParameterizedTest
-  @EnumSource(value = Color.class, names = {".*R.*", ".*N.*"}, mode = Mode.MATCH_ALL)
+  @EnumSource(value = Color.class,
+      names = {".*R.*", ".*N.*"},
+      mode = Mode.MATCH_ALL)
   @DisplayName("match all")
   void matchAll(final Color color) {
     assertNotNull(color);
   }
 
   @ParameterizedTest
-  @EnumSource(value = Color.class, names = {".*R.*", ".*N.*"}, mode = Mode.MATCH_ANY)
+  @EnumSource(value = Color.class,
+      names = {".*R.*", ".*N.*"},
+      mode = Mode.MATCH_ANY)
   @DisplayName("match all")
   void matchAny(final Color color) {
     assertNotNull(color);

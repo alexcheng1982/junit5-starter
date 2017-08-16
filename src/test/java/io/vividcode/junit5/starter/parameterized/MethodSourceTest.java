@@ -17,7 +17,7 @@ public class MethodSourceTest {
   @ParameterizedTest
   @MethodSource("names")
   @DisplayName("simple")
-  void simple(final String str) {
+  void simpleMethod(final String str) {
     assertNotNull(str);
   }
 
