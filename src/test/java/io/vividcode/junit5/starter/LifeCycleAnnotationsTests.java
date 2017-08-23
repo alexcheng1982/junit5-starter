@@ -1,11 +1,14 @@
 package io.vividcode.junit5.starter;
 
+import io.vividcode.junit5.starter.extension.lifecycle.LoggingExtension;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(LoggingExtension.class)
 public class LifeCycleAnnotationsTests {
 
   @BeforeAll
