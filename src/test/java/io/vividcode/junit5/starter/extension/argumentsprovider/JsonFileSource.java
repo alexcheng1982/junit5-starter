@@ -1,14 +1,15 @@
-package io.vividcode.junit5.starter.extension.testtemplate;
+package io.vividcode.junit5.starter.extension.argumentsprovider;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import org.junit.jupiter.api.TestTemplate;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@TestTemplate
-public @interface FileSource {
+@ArgumentsSource(JsonArgumentsProvider.class)
+public @interface JsonFileSource {
 
+  String value();
 }
