@@ -13,15 +13,21 @@ public class TimingExtension implements BeforeTestExecutionCallback,
   private final Namespace NAMESPACE = Namespace.create(getClass());
 
   @Override
-  public void beforeTestExecution(final ExtensionContext context) throws Exception {
-    getStore(context).put(context.getRequiredTestMethod(), System.currentTimeMillis());
+  public void beforeTestExecution(final ExtensionContext context)
+      throws Exception {
+    getStore(context)
+        .put(context.getRequiredTestMethod(), System.currentTimeMillis());
   }
 
   @Override
-  public void afterTestExecution(final ExtensionContext context) throws Exception {
-    final long start = getStore(context).remove(context.getRequiredTestMethod(), long.class);
+  public void afterTestExecution(final ExtensionContext context)
+      throws Exception {
+    final long start = getStore(context)
+        .remove(context.getRequiredTestMethod(), long.class);
     final long duration = System.currentTimeMillis() - start;
-    context.publishReportEntry("executionTime", Duration.ofMillis(duration).toString());
+    context
+        .publishReportEntry("executionTime",
+            Duration.ofMillis(duration).toString());
   }
 
   private Store getStore(final ExtensionContext context) {

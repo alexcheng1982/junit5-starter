@@ -26,12 +26,14 @@ public class LoggingExtension implements BeforeAllCallback,
   }
 
   @Override
-  public void beforeTestExecution(final ExtensionContext context) throws Exception {
+  public void beforeTestExecution(final ExtensionContext context)
+      throws Exception {
     log(context, "beforeTestExecution");
   }
 
   @Override
-  public void afterTestExecution(final ExtensionContext context) throws Exception {
+  public void afterTestExecution(final ExtensionContext context)
+      throws Exception {
     log(context, "afterTestExecution");
   }
 
