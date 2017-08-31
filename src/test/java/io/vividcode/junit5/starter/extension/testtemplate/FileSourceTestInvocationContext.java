@@ -5,7 +5,8 @@ import java.util.List;
 import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 
-public class FileSourceTestInvocationContext implements TestTemplateInvocationContext {
+public class FileSourceTestInvocationContext
+    implements TestTemplateInvocationContext {
 
   private final Line line;
 

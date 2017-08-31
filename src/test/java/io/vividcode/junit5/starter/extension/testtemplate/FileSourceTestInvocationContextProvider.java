@@ -19,15 +19,18 @@ public class FileSourceTestInvocationContextProvider implements
 
   @Override
   public boolean supportsTestTemplate(final ExtensionContext context) {
-    return AnnotationUtils.isAnnotated(context.getTestMethod(), FileSourceTest.class);
+    return AnnotationUtils
+        .isAnnotated(context.getTestMethod(), FileSourceTest.class);
   }
 
   @Override
-  public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(
-      final ExtensionContext context) {
+  public Stream<TestTemplateInvocationContext>
+  provideTestTemplateInvocationContexts(final ExtensionContext context) {
     final AtomicLong invocationCount = new AtomicLong(0);
     final String resourceName = AnnotationUtils
-        .findAnnotation(context.getRequiredTestMethod(), FileSourceTest.class).get().value();
+        .findAnnotation(context.getRequiredTestMethod(), FileSourceTest.class)
+        .get()
+        .value();
     final InputStream inputStream = context.getRequiredTestClass()
         .getResourceAsStream(resourceName);
     try (final BufferedReader reader = new BufferedReader(
@@ -44,7 +47,8 @@ public class FileSourceTestInvocationContextProvider implements
     }
   }
 
-  private TestTemplateInvocationContext createInvocationContext(final String text) {
+  private TestTemplateInvocationContext createInvocationContext(
+      final String text) {
     return new FileSourceTestInvocationContext(new Line(text));
   }
 }
