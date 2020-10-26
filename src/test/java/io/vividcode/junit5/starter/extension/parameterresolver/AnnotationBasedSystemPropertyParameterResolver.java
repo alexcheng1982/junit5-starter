@@ -25,6 +25,6 @@ public class AnnotationBasedSystemPropertyParameterResolver
         .findAnnotation(parameterContext.getParameter(), EnvProperty.class)
         .map(envProperty -> System.getProperty(envProperty.value()))
         .orElseThrow(() ->
-            new ParameterResolutionException("@EnvProperty is required."));
+            new ParameterResolutionException("Cannot find system property"));
   }
 }

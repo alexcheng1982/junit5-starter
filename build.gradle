@@ -5,16 +5,11 @@ buildscript {
   repositories {
     mavenCentral()
   }
-  dependencies {
-    classpath 'org.junit.platform:junit-platform-gradle-plugin:1.2.0'
-  }
 }
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
-
-apply plugin: 'org.junit.platform.gradle.plugin'
+sourceCompatibility = 11
 
 repositories {
   mavenCentral()
@@ -25,22 +20,19 @@ dependencies {
   compile('org.apache.commons:commons-lang3:3.6')
   compile('com.fasterxml.jackson.core:jackson-core:2.9.0')
   compile('com.fasterxml.jackson.core:jackson-databind:2.9.0')
-  testCompile("org.junit.jupiter:junit-jupiter-api:5.2.0")
-  testCompile("org.junit.jupiter:junit-jupiter-params:5.2.0")
+  testCompile("org.junit.jupiter:junit-jupiter-api:5.7.0")
+  testCompile("org.junit.jupiter:junit-jupiter-params:5.7.0")
   testCompile("org.junit.platform:junit-platform-launcher:1.0.0")
-  testCompile("org.junit.jupiter:junit-jupiter-engine:5.2.0")
+  testCompile("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 }
 
-junitPlatform {
-  selectors {
-    packages 'io.vividcode.junit5.starter.nested'
-    aClass 'io.vividcode.junit5.starter.BasicTest'
+compileTestJava {
+  options.compilerArgs += ['-parameters']
+}
+
+test {
+  useJUnitPlatform {
+    excludeTags('fail', 'slow')
+    systemProperty  'junit.jupiter.conditions.deactivate', '*'
   }
-  filters {
-    tags {
-      exclude 'fail', 'slow'
-    }
-    includeClassNamePatterns '.*Test', '.*Tests'
-  }
-  configurationParameter 'junit.jupiter.conditions.deactivate', '*'
 }

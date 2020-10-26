@@ -18,7 +18,7 @@ public class SystemPropertyParameterResolver implements ParameterResolver {
       throws ParameterResolutionException {
     final Parameter parameter = parameterContext.getParameter();
     return Objects.equals(parameter.getType(), String.class) &&
-        parameter.getName().startsWith(this.PREFIX);
+        parameter.getName().startsWith(PREFIX);
   }
 
   @Override
@@ -30,7 +30,7 @@ public class SystemPropertyParameterResolver implements ParameterResolver {
         .join(".",
             StringUtils.
                 splitByCharacterTypeCamelCase(
-                    name.substring(this.PREFIX.length())))
+                    name.substring(PREFIX.length())))
         .toLowerCase();
     return System.getProperty(property);
   }
