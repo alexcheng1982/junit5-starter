@@ -3,6 +3,7 @@ package io.vividcode.junit5.starter;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -127,5 +128,14 @@ public class AssertionsTests {
     assertNotSame(new Object(), new Object());
     assertNotSame(new Object(), new Object(), message);
     assertNotSame(new Object(), new Object(), () -> message);
+  }
+
+  @Test
+  @DisplayName("Example of assertInstanceOf")
+  void testAssertInstanceOf() {
+    final String message = "The object doesn't have the expected type";
+    assertInstanceOf(String.class, "hello");
+    assertInstanceOf(String.class, "hello", message);
+    assertInstanceOf(String.class, "hello", () -> message);
   }
 }

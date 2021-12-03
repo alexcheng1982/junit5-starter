@@ -1,8 +1,10 @@
 package io.vividcode.junit5.starter;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
@@ -33,5 +35,23 @@ public class AssertThrowsTests {
     );
     assertEquals(1, error.getFailures().size());
     assertTrue(error.getMessage().contains("Boom!"));
+  }
+
+  @Test
+  @DisplayName("Simple assertThrowsExactly")
+  void simpleAssertThrowsExactly() {
+    assertThrowsExactly(
+            ArithmeticException.class,
+            () -> System.out.println(1 / 0)
+            , "Divided by zero is not allowed.");
+  }
+
+  @Test
+  @DisplayName("Simple assertDoesNotThrow")
+  void simpleAssertDoesNotThrow() {
+    assertDoesNotThrow(() -> System.out.println("hello world"));
+    String value = assertDoesNotThrow(() -> "hello world",
+            "should provide a value");
+    assertEquals("hello world", value);
   }
 }
