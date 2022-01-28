@@ -2,6 +2,7 @@ package io.vividcode.junit5.starter.extension.parameterresolver;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import io.vividcode.junit5.starter.Fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public class AnnotationBasedSystemPropertyParameterResolverTest {
 
   @Test
-  @DisplayName("resolve property")
+  @DisplayName("resolve property - annotation")
+  @Fail
   void testResolveProperty(@EnvProperty("host") final String host) {
     assertNotNull(host);
   }

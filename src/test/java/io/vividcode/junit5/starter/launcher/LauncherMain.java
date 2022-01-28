@@ -25,6 +25,8 @@ public class LauncherMain {
 
     SummaryGeneratingListener listener = new SummaryGeneratingListener();
     launcher.registerTestExecutionListeners(listener);
+    launcher.registerTestExecutionListeners(
+        new ConsoleReportingTestExecutionListener());
 
     launcher.execute(request);
     listener.getSummary().printTo(new PrintWriter(System.out));

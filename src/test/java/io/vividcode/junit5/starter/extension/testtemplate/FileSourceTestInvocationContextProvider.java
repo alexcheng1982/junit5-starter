@@ -5,13 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
+import org.junit.platform.commons.PreconditionViolationException;
 import org.junit.platform.commons.util.AnnotationUtils;
-import org.junit.platform.commons.util.PreconditionViolationException;
 import org.junit.platform.commons.util.Preconditions;
 
 public class FileSourceTestInvocationContextProvider implements
@@ -35,8 +34,7 @@ public class FileSourceTestInvocationContextProvider implements
         .getResourceAsStream(resourceName);
     try (final BufferedReader reader = new BufferedReader(
         new InputStreamReader(inputStream))) {
-      return reader.lines().collect(Collectors.toList())
-          .stream()
+      return reader.lines()
           .map(this::createInvocationContext)
           .peek(invocationContext -> invocationCount.incrementAndGet())
           .onClose(() ->

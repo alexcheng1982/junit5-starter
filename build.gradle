@@ -32,8 +32,8 @@ compileTestJava {
 
 test {
     useJUnitPlatform {
-        excludeTags('fail', 'slow')
+        excludeTags('fail')
         systemProperties(System.getProperties())
-        systemProperty 'junit.jupiter.conditions.deactivate', '*'
+//        systemProperty 'junit.jupiter.conditions.deactivate', '*'
     }
 }

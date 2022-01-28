@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
+import org.junit.platform.commons.PreconditionViolationException;
 import org.junit.platform.commons.util.AnnotationUtils;
-import org.junit.platform.commons.util.PreconditionViolationException;
 
 public class JsonArgumentsProvider implements ArgumentsProvider {
 
@@ -31,7 +31,7 @@ public class JsonArgumentsProvider implements ArgumentsProvider {
               .getResourceAsStream(resource)) {
             final List<Map<String, Object>> values = this.objectMapper
                 .readValue(inputStream,
-                    new TypeReference<List<Map<String, Object>>>() {
+                    new TypeReference<>() {
                     });
             final List<String> properties = Stream
                 .of(context.getRequiredTestMethod().getParameters())
@@ -40,13 +40,12 @@ public class JsonArgumentsProvider implements ArgumentsProvider {
                     .map(JsonProperty::value)
                     .orElse(null))
                 .collect(Collectors.toList());
-            final Stream<Arguments> arguments = values.stream()
+            return values.stream()
                 .map(data -> Arguments.of(
                     properties.stream().map(property ->
                         Objects.isNull(property)
                             ? null
                             : data.get(property)).toArray()));
-            return arguments;
           } catch (final IOException e) {
             throw new PreconditionViolationException("Invalid JSON file", e);
           }
