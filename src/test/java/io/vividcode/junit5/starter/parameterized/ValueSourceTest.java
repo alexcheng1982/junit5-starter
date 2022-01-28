@@ -2,6 +2,7 @@ package io.vividcode.junit5.starter.parameterized;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import io.vividcode.junit5.starter.Fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -42,5 +43,16 @@ public class ValueSourceTest {
   @DisplayName("double")
   void doubles(final double val) {
     assertTrue(val > 0);
+  }
+
+  @ParameterizedTest
+  @ValueSource(ints = {1, 2, 3, 4, 5})
+  @DisplayName("with failed cases")
+  @Fail
+  void withFailedCases(int value) {
+    if (value % 2 == 0) {
+      throw new IllegalArgumentException("Invalid value");
+    }
+    assertTrue(value > 0);
   }
 }
