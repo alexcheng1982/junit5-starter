@@ -41,9 +41,9 @@ public class AssertThrowsTests {
   @DisplayName("Simple assertThrowsExactly")
   void simpleAssertThrowsExactly() {
     assertThrowsExactly(
-            ArithmeticException.class,
-            () -> System.out.println(1 / 0)
-            , "Divided by zero is not allowed.");
+        ArithmeticException.class,
+        () -> System.out.println(1 / 0)
+        , "Divided by zero is not allowed.");
   }
 
   @Test
@@ -51,7 +51,7 @@ public class AssertThrowsTests {
   void simpleAssertDoesNotThrow() {
     assertDoesNotThrow(() -> System.out.println("hello world"));
     String value = assertDoesNotThrow(() -> "hello world",
-            "should provide a value");
+        "should provide a value");
     assertEquals("hello world", value);
   }
 }

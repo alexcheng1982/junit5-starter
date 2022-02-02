@@ -16,6 +16,7 @@ import com.google.common.collect.Lists;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Basic assertions")
 public class AssertionsTests {
 
   @Test
@@ -87,7 +88,6 @@ public class AssertionsTests {
     assertArrayEquals(new int[]{1, 2}, new int[]{1, 2});
     assertArrayEquals(new int[]{1, 2}, new int[]{1, 2}, message);
     assertArrayEquals(new int[]{1, 2}, new int[]{1, 2}, () -> message);
-
     assertArrayEquals(new double[]{1.0, 2.0}, new double[]{1.1, 2.1}, 0.2);
   }
 
@@ -137,5 +137,16 @@ public class AssertionsTests {
     assertInstanceOf(String.class, "hello");
     assertInstanceOf(String.class, "hello", message);
     assertInstanceOf(String.class, "hello", () -> message);
+  }
+
+  @Test
+  @DisplayName("double precision")
+  @Fail
+  void testDoublePrecision() {
+    double total = 0;
+    for (int i = 0; i < 10; i++) {
+      total += 0.2;
+    }
+    assertEquals(total, 2);
   }
 }
