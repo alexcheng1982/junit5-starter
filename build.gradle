@@ -32,8 +32,9 @@ compileTestJava {
 
 test {
     useJUnitPlatform {
-        excludeTags('fail')
+        excludeTags('abort')
         systemProperties(System.getProperties())
+        systemProperty("host", "localhost")
 //        systemProperty 'junit.jupiter.conditions.deactivate', '*'
     }
 }

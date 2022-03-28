@@ -1,6 +1,6 @@
 package io.vividcode.junit5.starter.extension.exceptionhandling;
 
-import io.vividcode.junit5.starter.Fail;
+import io.vividcode.junit5.starter.Abort;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -16,7 +16,7 @@ public class OutOfMemoryTest {
   @Test
   @DisplayName("throw OutOfMemoryError")
   @Order(1)
-  @Fail
+  @Abort
   void outOfMemory() {
     throw new OutOfMemoryError();
   }

@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
@@ -32,14 +35,22 @@ public class FileSourceTestInvocationContextProvider implements
         .value();
     final InputStream inputStream = context.getRequiredTestClass()
         .getResourceAsStream(resourceName);
+    if (inputStream == null) {
+      throw new PreconditionViolationException("File not found");
+    }
+    List<String> lines = readLines(inputStream);
+    return lines.stream()
+        .map(this::createInvocationContext)
+        .peek(invocationContext -> invocationCount.incrementAndGet())
+        .onClose(() ->
+            Preconditions.condition(invocationCount.get() > 0,
+                () -> "The file should at least contain one line."));
+  }
+
+  private List<String> readLines(InputStream inputStream) {
     try (final BufferedReader reader = new BufferedReader(
-        new InputStreamReader(inputStream))) {
-      return reader.lines()
-          .map(this::createInvocationContext)
-          .peek(invocationContext -> invocationCount.incrementAndGet())
-          .onClose(() ->
-              Preconditions.condition(invocationCount.get() > 0,
-                  () -> "The file should at least contain one line."));
+        new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+      return reader.lines().collect(Collectors.toList());
     } catch (final IOException e) {
       throw new PreconditionViolationException("Invalid file", e);
     }
