@@ -1,4 +1,4 @@
-# JUnit 5 code samples
+# JUnit 5 Cookbook Code Samples
 
 [![build](https://github.com/VividcodeIO/junit5-starter/actions/workflows/build.yaml/badge.svg)](https://github.com/VividcodeIO/junit5-starter/actions/workflows/build.yaml)
 
