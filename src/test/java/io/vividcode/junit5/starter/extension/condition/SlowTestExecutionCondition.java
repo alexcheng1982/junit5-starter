@@ -5,6 +5,10 @@ import org.junit.jupiter.api.extension.ConditionEvaluationResult;
 import org.junit.jupiter.api.extension.ExecutionCondition;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
+/**
+ * Tests with the tag {@code slow} are enabled with the system property
+ * {@code slow} is set
+ */
 public class SlowTestExecutionCondition implements ExecutionCondition {
 
   @Override

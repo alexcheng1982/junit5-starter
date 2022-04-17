@@ -35,6 +35,7 @@ test {
         excludeTags('abort')
         systemProperties(System.getProperties())
         systemProperty("host", "localhost")
+        systemProperty("slow", "")
 //        systemProperty 'junit.jupiter.conditions.deactivate', '*'
     }
 }

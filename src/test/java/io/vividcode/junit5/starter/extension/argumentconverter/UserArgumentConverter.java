@@ -5,6 +5,9 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.params.converter.ArgumentConversionException;
 import org.junit.jupiter.params.converter.ArgumentConverter;
 
+/**
+ * Convert an argument of any type to {@link User}
+ */
 public class UserArgumentConverter implements ArgumentConverter {
 
   private final UserService userService = new UserService();
