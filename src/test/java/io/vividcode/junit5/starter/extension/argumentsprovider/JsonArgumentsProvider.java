@@ -31,7 +31,7 @@ public class JsonArgumentsProvider implements ArgumentsProvider {
               .getResourceAsStream(resource)) {
             final List<Map<String, Object>> values = this.objectMapper
                 .readValue(inputStream,
-                    new TypeReference<>() {
+                    new TypeReference<List<Map<String, Object>>>() {
                     });
             final List<String> properties = Stream
                 .of(context.getRequiredTestMethod().getParameters())
