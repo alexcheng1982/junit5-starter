@@ -6,6 +6,7 @@ import io.vividcode.junit5.starter.Fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.opentest4j.AssertionFailedError;
 
 @DisplayName("ValueSource")
 public class ValueSourceTest {
@@ -51,7 +52,7 @@ public class ValueSourceTest {
   @Fail
   void withFailedCases(int value) {
     if (value % 2 == 0) {
-      throw new IllegalArgumentException("Invalid value");
+      throw new AssertionFailedError("Values should be odd numbers");
     }
     assertTrue(value > 0);
   }

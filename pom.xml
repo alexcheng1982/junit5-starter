@@ -81,10 +81,10 @@
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
           <excludedGroups>abort</excludedGroups>
-          <environmentVariables>
+          <systemPropertyVariables>
             <host>localhost</host>
             <slow/>
-          </environmentVariables>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
     </plugins>
