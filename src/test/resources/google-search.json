@@ -1,0 +1,12 @@
+[
+  {
+    "name": "google search",
+    "request": {
+      "url": "https://www.google.com/search?q=java",
+      "method": "GET"
+    },
+    "response": {
+      "code": 200
+    }
+  }
+]
